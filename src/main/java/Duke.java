@@ -24,14 +24,19 @@ public class    Duke {
                 String[] items = userRequest.split(" ");
                 int index = Integer.parseInt(items[1])-1;
                 taskList.get(index).setDone(true);
-                System.out.println("Nice! I've marked this task as done: ");
+                HorizontalLine();
+                System.out.println("Nice! I've marked this task as done:");
                 System.out.println(taskList.get(index).isDone() + " " + taskList.get(index).getTaskName());
-            } else{
+                HorizontalLine();
+            } else {
                 Task newRequest = new Task(userRequest);
                 taskList.add(newRequest);
+                HorizontalLine();
                 System.out.println("added: " + userRequest);
+                HorizontalLine();
             }
         }
+
     }
     public static void greet() {
         Scanner in = new Scanner(System.in);
@@ -47,8 +52,9 @@ public class    Duke {
     }
 
     public static void list(ArrayList<Task> taskList) {
-        HorizontalLine();
         int listIndex = 1;
+        HorizontalLine();
+        System.out.println("Here are the tasks in your list:");
         for (Task task : taskList) {
             System.out.println(listIndex + ". " + task.isDone() + " " + task.getTaskName());
             listIndex++;
