@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class    Duke {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        ArrayList<String> taskList = new ArrayList<>();
+        ArrayList<Task> taskList = new ArrayList<>();
         String userRequest;
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -20,8 +20,15 @@ public class    Duke {
                 list(taskList);
             } else if (userRequest.equals("bye")) {
                 bye();
-            } else {
-                taskList.add(userRequest);
+            } else if (userRequest.startsWith("done") && userRequest.split(" ").length == 2) {
+                String[] items = userRequest.split(" ");
+                int index = Integer.parseInt(items[1])-1;
+                taskList.get(index).setDone(true);
+                System.out.println("Nice! I've marked this task as done: ");
+                System.out.println(taskList.get(index).isDone() + " " + taskList.get(index).getTaskName());
+            } else{
+                Task newRequest = new Task(userRequest);
+                taskList.add(newRequest);
                 System.out.println("added: " + userRequest);
             }
         }
@@ -37,15 +44,13 @@ public class    Duke {
         System.out.println("Hello " + username + "! What can I do for you?");
         HorizontalLine();
 
-
     }
 
-
-    public static void list(ArrayList<String> taskList) {
+    public static void list(ArrayList<Task> taskList) {
         HorizontalLine();
         int listIndex = 1;
-        for (String task : taskList) {
-            System.out.println(listIndex + ". " + task);
+        for (Task task : taskList) {
+            System.out.println(listIndex + ". " + task.isDone() + " " + task.getTaskName());
             listIndex++;
         }
         HorizontalLine();
@@ -55,7 +60,6 @@ public class    Duke {
         HorizontalLine();
         System.out.println("Bye. Hope to see you again soon!");
         HorizontalLine();
-
     }
 
     public static void HorizontalLine() {
