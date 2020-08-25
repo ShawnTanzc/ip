@@ -19,9 +19,7 @@ public class Task {
         String checker;
         if (this.isDone == true) {
             checker = "[\u2713]";
-
-        }
-        else {
+        } else {
             checker = "[\u2718]";
         }
         return checker;
