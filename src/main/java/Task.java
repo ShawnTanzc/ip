@@ -2,7 +2,7 @@ public class Task {
     private String taskName;
     private boolean isDone;
 
-    public Task(String task) { //constructor
+    public Task(String task) {
         this.taskName = task;
         this.isDone = false;
     }
@@ -27,5 +27,10 @@ public class Task {
 
     public void setDone(boolean done) {
         this.isDone = done;
+    }
+
+    @Override
+    public String toString() {
+        return isDone() + " " + getTaskName();
     }
 }
