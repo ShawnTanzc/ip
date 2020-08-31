@@ -11,10 +11,6 @@ public class Task {
         return this.taskName;
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
-    }
-
     public String isDone() {
         String checker;
         if (this.isDone == true) {

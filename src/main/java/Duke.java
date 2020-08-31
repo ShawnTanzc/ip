@@ -41,10 +41,10 @@ public class    Duke {
                     default:
                         printErrorMessage();
                     }
-                    horizontalLine();
+                    addHorizontalLine();
                     System.out.println("Got it. I've added this task: " + taskEntry.toString());
                     numberOfTaskTracker(taskList);
-                    horizontalLine();
+                    addHorizontalLine();
                     taskList.add(taskEntry);
                 } else {
                     printErrorMessage();
@@ -65,45 +65,45 @@ public class    Duke {
 
     public static void greet() {
         Scanner in = new Scanner(System.in);
-        horizontalLine();
+        addHorizontalLine();
         System.out.println("Hello I'm Duke");
         System.out.println("What is your name, sir?");
-        horizontalLine();
+        addHorizontalLine();
         String username;
-        username = in.nextLine();
+        username = in.nextLine().trim();
         System.out.println("Hello " + username + "! What can I do for you?");
-        horizontalLine();
+        addHorizontalLine();
     }
 
     public static void list(ArrayList<Task> taskList) {
         int listIndex = 1;
-        horizontalLine();
+        addHorizontalLine();
         System.out.println("Here are the tasks in your list:");
         for (Task task : taskList) {
             System.out.println(listIndex + ". " + task.toString());
             listIndex++;
         }
-        horizontalLine();
+        addHorizontalLine();
     }
 
 
     public static void bye(){
-        horizontalLine();
+        addHorizontalLine();
         System.out.println("Bye. Hope to see you again soon!");
-        horizontalLine();
+        addHorizontalLine();
     }
 
     public static void done(ArrayList<Task> taskList, String userRequest) {
         String[] items = userRequest.split(" ");
         int index = Integer.parseInt(items[1])-1;
         taskList.get(index).setDone(true);
-        horizontalLine();
+        addHorizontalLine();
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(taskList.get(index).toString());
-        horizontalLine();
+        addHorizontalLine();
     }
 
-    public static void horizontalLine() {
+    public static void addHorizontalLine() {
         System.out.println("_________________________________________");
     }
 
