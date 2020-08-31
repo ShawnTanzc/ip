@@ -6,12 +6,7 @@ public class    Duke {
         Scanner in = new Scanner(System.in);
         ArrayList<Task> taskList = new ArrayList<>();
         String userRequest;
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        printLogo();
         greet();
         while (true) {
             userRequest = in.nextLine().toLowerCase();
@@ -21,13 +16,7 @@ public class    Duke {
                 bye();
                 return;
             } else if (userRequest.startsWith("done") && userRequest.split(" ").length == 2) {
-                String[] items = userRequest.split(" ");
-                int index = Integer.parseInt(items[1])-1;
-                taskList.get(index).setDone(true);
-                horizontalLine();
-                System.out.println("Nice! I've marked this task as done:");
-                System.out.println(taskList.get(index).toString());
-                horizontalLine();
+                done(taskList, userRequest);
             } else {
                 TaskType newRequest = extractTaskType(userRequest);
                 Task taskEntry = null;
@@ -50,21 +39,30 @@ public class    Duke {
                         taskEntry = new ToDo(toDoName);
                         break;
                     default:
-                        System.out.println("Error! Please create task in the correct format.");
+                        printErrorMessage();
                     }
                     horizontalLine();
                     System.out.println("Got it. I've added this task: " + taskEntry.toString());
-                    int numberOfTasks = taskList.size() + 1;
-                    System.out.println("Now you have " + numberOfTasks + " task(s) in the list.");
+                    numberOfTaskTracker(taskList);
                     horizontalLine();
                     taskList.add(taskEntry);
                 } else {
-                    System.out.println("Error! Please create task in the correct format.");
+                    printErrorMessage();
                 }
 
             }
         }
     }
+
+    public static void printLogo() {
+        String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
+        System.out.println("Hello from\n" + logo);
+    }
+
     public static void greet() {
         Scanner in = new Scanner(System.in);
         horizontalLine();
@@ -75,7 +73,6 @@ public class    Duke {
         username = in.nextLine();
         System.out.println("Hello " + username + "! What can I do for you?");
         horizontalLine();
-
     }
 
     public static void list(ArrayList<Task> taskList) {
@@ -93,6 +90,16 @@ public class    Duke {
     public static void bye(){
         horizontalLine();
         System.out.println("Bye. Hope to see you again soon!");
+        horizontalLine();
+    }
+
+    public static void done(ArrayList<Task> taskList, String userRequest) {
+        String[] items = userRequest.split(" ");
+        int index = Integer.parseInt(items[1])-1;
+        taskList.get(index).setDone(true);
+        horizontalLine();
+        System.out.println("Nice! I've marked this task as done:");
+        System.out.println(taskList.get(index).toString());
         horizontalLine();
     }
 
@@ -125,8 +132,18 @@ public class    Duke {
         int startPointIndex = userRequest.lastIndexOf("/");
         return userRequest.substring(startPointIndex + 4);
     }
+
     public static String getToDoName(String userRequest) {
         int startPointIndex = userRequest.indexOf(" ");
         return userRequest.substring(startPointIndex);
+    }
+
+    public static void numberOfTaskTracker(ArrayList<Task> taskList) {
+        int numberOfTasks = taskList.size() + 1;
+        System.out.println("Now you have " + numberOfTasks + " task(s) in the list.");
+    }
+
+    public static void printErrorMessage() {
+        System.out.println("Error! Please create task in the correct format.");
     }
 }
