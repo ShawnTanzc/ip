@@ -1,22 +1,35 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class    Duke {
+public class Duke {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         ArrayList<Task> taskList = new ArrayList<>();
-        String userRequest;
-        printLogo();
+        String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
+        System.out.println("Hello from\n" + logo);
         greet();
         while (true) {
-            userRequest = in.nextLine().toLowerCase();
+            String userRequest = in.nextLine();
             if (userRequest.equals("list")) {
-                list(taskList);
+                int listIndex = 1;
+                addHorizontalLine();
+                System.out.println("Here are the tasks in your list:");
+                for (Task task : taskList) {
+                    System.out.println(listIndex + ". " + task.toString());
+                    listIndex++;
+                }
+                addHorizontalLine();
             } else if (userRequest.equals("bye")) {
                 bye();
                 return;
             } else if (userRequest.startsWith("done") && userRequest.split(" ").length == 2) {
                 done(taskList, userRequest);
+            } else if (userRequest.startsWith("done") && userRequest.split("").length != 2) {
+                printErrorMessage();
             } else {
                 TaskType newRequest = extractTaskType(userRequest);
                 Task taskEntry = null;
@@ -54,15 +67,6 @@ public class    Duke {
         }
     }
 
-    public static void printLogo() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-    }
-
     public static void greet() {
         Scanner in = new Scanner(System.in);
         addHorizontalLine();
@@ -74,18 +78,6 @@ public class    Duke {
         System.out.println("Hello " + username + "! What can I do for you?");
         addHorizontalLine();
     }
-
-    public static void list(ArrayList<Task> taskList) {
-        int listIndex = 1;
-        addHorizontalLine();
-        System.out.println("Here are the tasks in your list:");
-        for (Task task : taskList) {
-            System.out.println(listIndex + ". " + task.toString());
-            listIndex++;
-        }
-        addHorizontalLine();
-    }
-
 
     public static void bye(){
         addHorizontalLine();

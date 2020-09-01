@@ -1,0 +1,13 @@
+Shawn
+list
+hello
+done
+deadline pay fine /by this Sunday
+list
+todo borrow money
+event gambling /at Saturday 2pm-8pm
+list
+done 2
+done 3
+list
+bye
