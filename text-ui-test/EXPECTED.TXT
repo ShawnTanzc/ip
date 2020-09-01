@@ -1,6 +1,6 @@
 Hello from
- ____        _
-|  _ \ _   _| | _____
+ ____        _        
+|  _ \ _   _| | _____ 
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
@@ -17,26 +17,26 @@ _________________________________________
 Error! Please create task in the correct format.
 Error! Please create task in the correct format.
 _________________________________________
-Got it. I've added this task: [D][✘]  pay fine  (by: this sunday)
+Got it. I've added this task: [D][✘]  pay fine  (by: this Sunday)
 Now you have 1 task(s) in the list.
 _________________________________________
 _________________________________________
 Here are the tasks in your list:
-1. [D][✘]  pay fine  (by: this sunday)
+1. [D][✘]  pay fine  (by: this Sunday)
 _________________________________________
 _________________________________________
 Got it. I've added this task: [T][✘]  borrow money
 Now you have 2 task(s) in the list.
 _________________________________________
 _________________________________________
-Got it. I've added this task: [E][✘]  gambling  (at: saturday 2pm-8pm)
+Got it. I've added this task: [E][✘]  gambling  (at: Saturday 2pm-8pm)
 Now you have 3 task(s) in the list.
 _________________________________________
 _________________________________________
 Here are the tasks in your list:
-1. [D][✘]  pay fine  (by: this sunday)
+1. [D][✘]  pay fine  (by: this Sunday)
 2. [T][✘]  borrow money
-3. [E][✘]  gambling  (at: saturday 2pm-8pm)
+3. [E][✘]  gambling  (at: Saturday 2pm-8pm)
 _________________________________________
 _________________________________________
 Nice! I've marked this task as done:
@@ -44,13 +44,13 @@ Nice! I've marked this task as done:
 _________________________________________
 _________________________________________
 Nice! I've marked this task as done:
-[E][✓]  gambling  (at: saturday 2pm-8pm)
+[E][✓]  gambling  (at: Saturday 2pm-8pm)
 _________________________________________
 _________________________________________
 Here are the tasks in your list:
-1. [D][✘]  pay fine  (by: this sunday)
+1. [D][✘]  pay fine  (by: this Sunday)
 2. [T][✓]  borrow money
-3. [E][✓]  gambling  (at: saturday 2pm-8pm)
+3. [E][✓]  gambling  (at: Saturday 2pm-8pm)
 _________________________________________
 _________________________________________
 Bye. Hope to see you again soon!

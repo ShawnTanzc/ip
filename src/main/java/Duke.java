@@ -12,6 +12,10 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         greet();
+        String username;
+        username = in.nextLine().trim();
+        System.out.println("Hello " + username + "! What can I do for you?");
+        addHorizontalLine();
         while (true) {
             String userRequest = in.nextLine();
             if (userRequest.equals("list")) {
@@ -26,10 +30,8 @@ public class Duke {
             } else if (userRequest.equals("bye")) {
                 bye();
                 return;
-            } else if (userRequest.startsWith("done") && userRequest.split(" ").length == 2) {
+            } else if (userRequest.startsWith("done") && (userRequest.split(" ").length == 2)) {
                 done(taskList, userRequest);
-            } else if (userRequest.startsWith("done") && userRequest.split("").length != 2) {
-                printErrorMessage();
             } else {
                 TaskType newRequest = extractTaskType(userRequest);
                 Task taskEntry = null;
@@ -68,14 +70,9 @@ public class Duke {
     }
 
     public static void greet() {
-        Scanner in = new Scanner(System.in);
         addHorizontalLine();
         System.out.println("Hello I'm Duke");
         System.out.println("What is your name, sir?");
-        addHorizontalLine();
-        String username;
-        username = in.nextLine().trim();
-        System.out.println("Hello " + username + "! What can I do for you?");
         addHorizontalLine();
     }
 
