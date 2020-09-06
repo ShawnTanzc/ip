@@ -53,7 +53,6 @@ public class Duke {
                         String toDoName = getToDoName(userRequest);
                         taskEntry = new ToDo(toDoName);
                         break;
-                        
                     default:
                         printErrorMessage();
                     }
