@@ -12,45 +12,47 @@ _________________________________________
 Hello Shawn! What can I do for you?
 _________________________________________
 _________________________________________
-Here are the tasks in your list:
+List is currently empty. Please insert task.
 _________________________________________
-Error! Please create task in the correct format.
-Error! Please create task in the correct format.
 _________________________________________
-Got it. I've added this task: [D][✘]  pay fine  (by: this Sunday)
+Task not detected. Use "todo", "deadline" or "event".
+_________________________________________
+_________________________________________
+Missing details. Please use the correct format.
+_________________________________________
+_________________________________________
+Missing details. Please use the correct format.
+_________________________________________
+_________________________________________
+Got it. I've added this task: [T][?]  Homework
 Now you have 1 task(s) in the list.
 _________________________________________
 _________________________________________
-Here are the tasks in your list:
-1. [D][✘]  pay fine  (by: this Sunday)
-_________________________________________
-_________________________________________
-Got it. I've added this task: [T][✘]  borrow money
+Got it. I've added this task: [D][?]  IP project  (by: Monday)
 Now you have 2 task(s) in the list.
 _________________________________________
 _________________________________________
-Got it. I've added this task: [E][✘]  gambling  (at: Saturday 2pm-8pm)
+Got it. I've added this task: [E][?]  Marathon  (at: Sunday)
 Now you have 3 task(s) in the list.
 _________________________________________
 _________________________________________
 Here are the tasks in your list:
-1. [D][✘]  pay fine  (by: this Sunday)
-2. [T][✘]  borrow money
-3. [E][✘]  gambling  (at: Saturday 2pm-8pm)
+1. [T][?]  Homework
+2. [D][?]  IP project  (by: Monday)
+3. [E][?]  Marathon  (at: Sunday)
 _________________________________________
 _________________________________________
 Nice! I've marked this task as done:
-[T][✓]  borrow money
+[D][?]  IP project  (by: Monday)
 _________________________________________
 _________________________________________
-Nice! I've marked this task as done:
-[E][✓]  gambling  (at: Saturday 2pm-8pm)
+Task not created yet. Please create the task first.
 _________________________________________
 _________________________________________
 Here are the tasks in your list:
-1. [D][✘]  pay fine  (by: this Sunday)
-2. [T][✓]  borrow money
-3. [E][✓]  gambling  (at: Saturday 2pm-8pm)
+1. [T][?]  Homework
+2. [D][?]  IP project  (by: Monday)
+3. [E][?]  Marathon  (at: Sunday)
 _________________________________________
 _________________________________________
 Bye. Hope to see you again soon!
