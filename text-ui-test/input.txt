@@ -1,13 +1,13 @@
 Shawn
 list
-hello
-done
-deadline pay fine /by this Sunday
-list
-todo borrow money
-event gambling /at Saturday 2pm-8pm
+nothing
+todo
+deadline never
+todo Homework
+deadline IP project /by Monday
+event Marathon /at Sunday
 list
 done 2
-done 3
+done 5
 list
 bye

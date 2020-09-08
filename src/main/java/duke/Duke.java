@@ -1,5 +1,11 @@
-import java.sql.SQLOutput;
-import java.util.IllegalFormatException;
+package duke;
+
+import duke.command.DukeException;
+import duke.command.TaskType;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -110,7 +116,7 @@ public class Duke {
         }
     }
 
-    public static TaskType extractTaskType(String userRequest) throws DukeException{
+    public static TaskType extractTaskType(String userRequest) throws DukeException {
         userRequest = userRequest.toLowerCase().trim();
         TaskType currentTaskType;
         if (userRequest.contains("/by") && userRequest.startsWith("deadline")) {
