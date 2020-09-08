@@ -1,7 +1,14 @@
+import java.sql.SQLOutput;
+import java.util.IllegalFormatException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
+    private static final String ERROR_LIST_EMPTY = "List is currently empty. Please insert task.";
+    private static final String ERROR_INCORRECT_FORMAT = "Missing details. Please use the correct format.";
+    private static final String ERROR_NO_SUCH_TASK = "Task not detected. Use \"todo\", \"deadline\" or \"event\".";
+    private static final String ERROR_TASK_NOT_SET = "Task not created yet. Please create the task first.";
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         ArrayList<Task> taskList = new ArrayList<>();
@@ -19,57 +26,63 @@ public class Duke {
         while (true) {
             String userRequest = in.nextLine();
             if (userRequest.equals("list")) {
-                int listIndex = 1;
-                addHorizontalLine();
-                System.out.println("Here are the tasks in your list:");
-                for (Task task : taskList) {
-                    System.out.println(listIndex + ". " + task.toString());
-                    listIndex++;
+                if (taskList.size() == 0) {
+                    printExceptionMessage(ERROR_LIST_EMPTY);
+                } else {
+                    int listIndex = 1;
+                    addHorizontalLine();
+                    System.out.println("Here are the tasks in your list:");
+                    for (Task task : taskList) {
+                        System.out.println(listIndex + ". " + task.toString());
+                        listIndex++;
+                    }
+                    addHorizontalLine();
                 }
-                addHorizontalLine();
             } else if (userRequest.equals("bye")) {
                 bye();
                 return;
             } else if (userRequest.startsWith("done") && (userRequest.split(" ").length == 2)) {
                 done(taskList, userRequest);
             } else {
-                TaskType newRequest = extractTaskType(userRequest);
-                Task taskEntry = null;
-                if (newRequest != null) {
-                    switch (newRequest) {
-                    case DEADLINE:
-                        String deadlineName = getTaskName(userRequest);
-                        String deadlineDetail = getTaskDetail(userRequest);
-                        taskEntry = new Deadline(deadlineName, deadlineDetail);
-                        break;
+                try {
+                    TaskType newRequest = extractTaskType(userRequest);
+                    Task taskEntry = null;
+                    if (newRequest != null) {
+                        switch (newRequest) {
+                        case DEADLINE:
+                            String deadlineName = getTaskName(userRequest);
+                            String deadlineDetail = getTaskDetail(userRequest);
+                            taskEntry = new Deadline(deadlineName, deadlineDetail);
+                            break;
 
-                    case EVENT:
-                        String eventName = getTaskName(userRequest);
-                        String eventDetail = getTaskDetail(userRequest);
-                        taskEntry = new Event(eventName, eventDetail);
-                        break;
+                        case EVENT:
+                            String eventName = getTaskName(userRequest);
+                            String eventDetail = getTaskDetail(userRequest);
+                            taskEntry = new Event(eventName, eventDetail);
+                            break;
 
-                    case TODO:
-                        String toDoName = getToDoName(userRequest);
-                        taskEntry = new ToDo(toDoName);
-                        break;
-                        
-                    default:
-                        printErrorMessage();
+                        case TODO:
+                            String toDoName = getToDoName(userRequest);
+                            taskEntry = new ToDo(toDoName);
+                            break;
+                        }
+                        addHorizontalLine();
+                        System.out.println("Got it. I've added this task: " + taskEntry.toString());
+                        numberOfTaskTracker(taskList);
+                        addHorizontalLine();
+                        taskList.add(taskEntry);
+                    } else {
+                        printExceptionMessage(ERROR_NO_SUCH_TASK);
                     }
-                    addHorizontalLine();
-                    System.out.println("Got it. I've added this task: " + taskEntry.toString());
-                    numberOfTaskTracker(taskList);
-                    addHorizontalLine();
-                    taskList.add(taskEntry);
-                } else {
-                    printErrorMessage();
+                } catch (StringIndexOutOfBoundsException e) {
+                    printExceptionMessage(ERROR_INCORRECT_FORMAT);
+                } catch (DukeException e) {
+                    printExceptionMessage(ERROR_INCORRECT_FORMAT);
                 }
-
             }
         }
     }
-
+    
     public static void greet() {
         addHorizontalLine();
         System.out.println("Hello I'm Duke");
@@ -84,20 +97,20 @@ public class Duke {
     }
 
     public static void done(ArrayList<Task> taskList, String userRequest) {
-        String[] items = userRequest.split(" ");
-        int index = Integer.parseInt(items[1])-1;
-        taskList.get(index).setDone(true);
-        addHorizontalLine();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(taskList.get(index).toString());
-        addHorizontalLine();
+        try {
+            String[] items = userRequest.split(" ");
+            int index = Integer.parseInt(items[1]) - 1;
+            taskList.get(index).setDone(true);
+            addHorizontalLine();
+            System.out.println("Nice! I've marked this task as done:");
+            System.out.println(taskList.get(index).toString());
+            addHorizontalLine();
+        } catch (IndexOutOfBoundsException e) {
+            printExceptionMessage(ERROR_TASK_NOT_SET);
+        }
     }
 
-    public static void addHorizontalLine() {
-        System.out.println("_________________________________________");
-    }
-
-    public static TaskType extractTaskType(String userRequest) {
+    public static TaskType extractTaskType(String userRequest) throws DukeException{
         userRequest = userRequest.toLowerCase().trim();
         TaskType currentTaskType;
         if (userRequest.contains("/by") && userRequest.startsWith("deadline")) {
@@ -106,6 +119,10 @@ public class Duke {
             currentTaskType = TaskType.EVENT;
         } else if (userRequest.startsWith("todo")) {
             currentTaskType =  TaskType.TODO;
+
+        } else if (!userRequest.contains("/at") && userRequest.startsWith("event") ||
+                    !userRequest.contains("/by") && userRequest.startsWith("deadline")) {
+            throw new DukeException();
         } else {
             currentTaskType = null;
         }
@@ -133,7 +150,13 @@ public class Duke {
         System.out.println("Now you have " + numberOfTasks + " task(s) in the list.");
     }
 
-    public static void printErrorMessage() {
-        System.out.println("Error! Please create task in the correct format.");
+    public static void printExceptionMessage(String exceptionMessage) {
+        addHorizontalLine();
+        System.out.println(exceptionMessage);
+        addHorizontalLine();
+    }
+
+    public static void addHorizontalLine() {
+        System.out.println("_________________________________________");
     }
 }
