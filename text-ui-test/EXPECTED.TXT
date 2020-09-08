@@ -21,35 +21,38 @@ _________________________________________
 Missing details. Please use the correct format.
 _________________________________________
 _________________________________________
-Got it. I've added this task: [T][✘]  Homework
+Missing details. Please use the correct format.
+_________________________________________
+_________________________________________
+Got it. I've added this task: [T][?]  Homework
 Now you have 1 task(s) in the list.
 _________________________________________
 _________________________________________
-Got it. I've added this task: [D][✘]  IP project  (by: Monday)
+Got it. I've added this task: [D][?]  IP project  (by: Monday)
 Now you have 2 task(s) in the list.
 _________________________________________
 _________________________________________
-Got it. I've added this task: [E][✘]  Marathon  (at: Sunday)
+Got it. I've added this task: [E][?]  Marathon  (at: Sunday)
 Now you have 3 task(s) in the list.
 _________________________________________
 _________________________________________
 Here are the tasks in your list:
-1. [T][✘]  Homework
-2. [D][✘]  IP project  (by: Monday)
-3. [E][✘]  Marathon  (at: Sunday)
+1. [T][?]  Homework
+2. [D][?]  IP project  (by: Monday)
+3. [E][?]  Marathon  (at: Sunday)
 _________________________________________
 _________________________________________
 Nice! I've marked this task as done:
-[D][✓]  IP project  (by: Monday)
+[D][?]  IP project  (by: Monday)
 _________________________________________
 _________________________________________
 Task not created yet. Please create the task first.
 _________________________________________
 _________________________________________
 Here are the tasks in your list:
-1. [T][✘]  Homework
-2. [D][✓]  IP project  (by: Monday)
-3. [E][✘]  Marathon  (at: Sunday)
+1. [T][?]  Homework
+2. [D][?]  IP project  (by: Monday)
+3. [E][?]  Marathon  (at: Sunday)
 _________________________________________
 _________________________________________
 Bye. Hope to see you again soon!
