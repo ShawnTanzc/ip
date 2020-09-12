@@ -15,44 +15,55 @@ _________________________________________
 List is currently empty. Please insert task.
 _________________________________________
 _________________________________________
-Task not detected. Use "todo", "deadline" or "event".
-_________________________________________
-_________________________________________
-Missing details. Please use the correct format.
-_________________________________________
-_________________________________________
-Missing details. Please use the correct format.
-_________________________________________
-_________________________________________
-Got it. I've added this task: [T][?]  Homework
-Now you have 1 task(s) in the list.
-_________________________________________
-_________________________________________
-Got it. I've added this task: [D][?]  IP project  (by: Monday)
-Now you have 2 task(s) in the list.
-_________________________________________
-_________________________________________
-Got it. I've added this task: [E][?]  Marathon  (at: Sunday)
-Now you have 3 task(s) in the list.
-_________________________________________
-_________________________________________
-Here are the tasks in your list:
-1. [T][?]  Homework
-2. [D][?]  IP project  (by: Monday)
-3. [E][?]  Marathon  (at: Sunday)
-_________________________________________
-_________________________________________
-Nice! I've marked this task as done:
-[D][?]  IP project  (by: Monday)
+Task not created yet. Please create the task first.
 _________________________________________
 _________________________________________
 Task not created yet. Please create the task first.
 _________________________________________
 _________________________________________
+Got it. I've added this task: [T][?]  play soccer
+Now you have 1 task(s) in the list.
+_________________________________________
+_________________________________________
+Got it. I've added this task: [E][?]  soccer match  (at: 7.00pm)
+Now you have 2 task(s) in the list.
+_________________________________________
+_________________________________________
+Got it. I've added this task: [D][?]  coding homework  (by: tomorrow)
+Now you have 3 task(s) in the list.
+_________________________________________
+_________________________________________
 Here are the tasks in your list:
-1. [T][?]  Homework
-2. [D][?]  IP project  (by: Monday)
-3. [E][?]  Marathon  (at: Sunday)
+1. [T][?]  play soccer
+2. [E][?]  soccer match  (at: 7.00pm)
+3. [D][?]  coding homework  (by: tomorrow)
+_________________________________________
+_________________________________________
+Nice! I've marked this task as done:
+[D][?]  coding homework  (by: tomorrow)
+_________________________________________
+_________________________________________
+Nice! I've marked this task as done:
+[E][?]  soccer match  (at: 7.00pm)
+_________________________________________
+_________________________________________
+Here are the tasks in your list:
+1. [T][?]  play soccer
+2. [E][?]  soccer match  (at: 7.00pm)
+3. [D][?]  coding homework  (by: tomorrow)
+_________________________________________
+_________________________________________
+Noted. I've removed this task:
+[E][?]  soccer match  (at: 7.00pm)
+Now you have 2 task(s) in the list.
+_________________________________________
+_________________________________________
+Here are the tasks in your list:
+1. [T][?]  play soccer
+2. [D][?]  coding homework  (by: tomorrow)
+_________________________________________
+_________________________________________
+Task not detected. Use "todo", "deadline" or "event".
 _________________________________________
 _________________________________________
 Bye. Hope to see you again soon!

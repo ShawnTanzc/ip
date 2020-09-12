@@ -1,13 +1,15 @@
 Shawn
 list
-nothing
-todo
-deadline never
-todo Homework
-deadline IP project /by Monday
-event Marathon /at Sunday
-list
+delete 2
 done 2
-done 5
+todo play soccer
+event soccer match /at 7.00pm
+deadline coding homework /by tomorrow
 list
+done 3
+done 2
+list
+delete 2
+list
+blah
 bye
