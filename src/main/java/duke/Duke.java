@@ -49,6 +49,8 @@ public class Duke {
                 return;
             } else if (userRequest.startsWith("done") && (userRequest.split(" ").length == 2)) {
                 done(taskList, userRequest);
+            } else if (userRequest.startsWith("delete") && (userRequest.split(" ").length == 2)) {
+                delete(taskList, userRequest);
             } else {
                 try {
                     TaskType newRequest = extractTaskType(userRequest);
@@ -74,9 +76,9 @@ public class Duke {
                         }
                         addHorizontalLine();
                         System.out.println("Got it. I've added this task: " + taskEntry.toString());
+                        taskList.add(taskEntry);
                         numberOfTaskTracker(taskList);
                         addHorizontalLine();
-                        taskList.add(taskEntry);
                     } else {
                         printExceptionMessage(ERROR_NO_SUCH_TASK);
                     }
@@ -111,6 +113,25 @@ public class Duke {
             System.out.println("Nice! I've marked this task as done:");
             System.out.println(taskList.get(index).toString());
             addHorizontalLine();
+        } catch (IndexOutOfBoundsException e) {
+            printExceptionMessage(ERROR_TASK_NOT_SET);
+        }
+    }
+
+    public static void delete(ArrayList<Task> taskList, String userRequest) {
+        try {
+            String[] items = userRequest.split(" ");
+            int index = Integer.parseInt(items[1]) - 1;
+            if (index < taskList.size()) {
+                addHorizontalLine();
+                System.out.println("Noted. I've removed this task:");
+                System.out.println(taskList.get(index).toString());
+                taskList.remove(index);
+                numberOfTaskTracker(taskList);
+                addHorizontalLine();
+            } else {
+                printExceptionMessage(ERROR_TASK_NOT_SET);
+            }
         } catch (IndexOutOfBoundsException e) {
             printExceptionMessage(ERROR_TASK_NOT_SET);
         }
@@ -152,7 +173,7 @@ public class Duke {
     }
 
     public static void numberOfTaskTracker(ArrayList<Task> taskList) {
-        int numberOfTasks = taskList.size() + 1;
+        int numberOfTasks = taskList.size();
         System.out.println("Now you have " + numberOfTasks + " task(s) in the list.");
     }
 
