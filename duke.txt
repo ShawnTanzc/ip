@@ -1,0 +1,4 @@
+My Task(s): 
+T|0|homework|
+E|1|tea ceremony|5.00pm
+D|0|register internship|today
