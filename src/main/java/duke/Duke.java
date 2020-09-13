@@ -2,14 +2,18 @@ package duke;
 
 import duke.command.DukeException;
 import duke.command.TaskType;
+import duke.command.FileIO;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
+
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
+    private static FileIO savedFile = new FileIO("duke.txt");
     private static final String ERROR_LIST_EMPTY = "List is currently empty. Please insert task.";
     private static final String ERROR_INCORRECT_FORMAT = "Missing details. Please use the correct format.";
     private static final String ERROR_NO_SUCH_TASK = "Task not detected. Use \"todo\", \"deadline\" or \"event\".";
@@ -45,6 +49,7 @@ public class Duke {
                     addHorizontalLine();
                 }
             } else if (userRequest.equals("bye")) {
+                save(taskList);
                 bye();
                 return;
             } else if (userRequest.startsWith("done") && (userRequest.split(" ").length == 2)) {
@@ -95,8 +100,16 @@ public class Duke {
         System.out.println("What is your name, sir?");
         addHorizontalLine();
     }
-
-    public static void bye(){
+    public static void save(ArrayList<Task> taskList) {
+        try {
+            savedFile.saveFile(taskList);
+            addHorizontalLine();
+            System.out.println("Task have been saved. File name: " + savedFile.getFile());
+        } catch (IOException e) {
+            printExceptionMessage("Unable to save file");
+        }
+    }
+    public static void bye() {
         addHorizontalLine();
         System.out.println("Bye. Hope to see you again soon!");
         addHorizontalLine();

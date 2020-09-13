@@ -1,6 +1,6 @@
 package duke.task;
 
-public class Task {
+public abstract class Task {
     private String taskName;
     private boolean isDone;
 
@@ -10,8 +10,22 @@ public class Task {
     }
 
     public String getTaskName() {
-        return this.taskName;
+        return this.taskName.trim();
     }
+
+    public abstract String getTaskType();
+
+    public boolean isDoneChecker() {
+        boolean checker;
+        if (this.isDone) {
+            checker = true;
+        } else {
+            checker = false;
+        }
+        return checker;
+    }
+
+    public abstract String getTaskDetails();
 
     public String isDone() {
         String checker;
