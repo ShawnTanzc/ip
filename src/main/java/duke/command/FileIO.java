@@ -54,7 +54,8 @@ public class FileIO {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] items = line.split(" \\| ");
+            String[] items;
+            items = line.split("|");
             taskType = items[0];
             isDoneChecker = items[1];
             taskDetails = items[2];
