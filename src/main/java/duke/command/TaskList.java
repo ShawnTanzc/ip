@@ -6,7 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static duke.command.Parser.*;
+import static duke.command.Parser.isTypedDelete;
 import static duke.command.Ui.addHorizontalLine;
+import static duke.command.Ui.bye;
 
 public class TaskList {
 
@@ -18,6 +21,21 @@ public class TaskList {
     private static ArrayList<Task> taskList;
     private static Storage savedFile = new Storage("duke.txt");
 
+    public static void inputParser(String userRequest) {
+        if (isTypedList(userRequest)) {
+            printTaskList();
+        } else if (isTypedBye(userRequest)) {
+            saveTaskList();
+            bye();
+        } else if (isTypedDone(userRequest)) {
+            done(userRequest);
+        } else if (isTypedDelete(userRequest)) {
+            deleteTask(userRequest);
+        } else {
+            addTask(userRequest);
+        }
+    }
+
     public void loadTaskList() throws FileNotFoundException {
         try {
             System.out.println("Loading... Please Wait.");
@@ -28,7 +46,7 @@ public class TaskList {
         }
     }
 
-    public void printTaskList() {
+    public static void printTaskList() {
         if (taskList.size() == 0) {
             printExceptionMessage(ERROR_LIST_EMPTY);
         } else {
@@ -148,7 +166,7 @@ public class TaskList {
         return userRequest.substring(startPointIndex);
     }
 
-    public void saveTaskList() {
+    public static void saveTaskList() {
         try {
             savedFile.saveFile(taskList);
             addHorizontalLine();
