@@ -12,11 +12,11 @@ import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class FileIO {
-    private final String SEGMENT_DIVIDER = "|";
+public class Storage {
+    private final String SEGMENT_DIVIDER = " | ";
     private String file;
 
-    public FileIO (String file) {
+    public Storage(String file) {
         setFile(file);
     }
 
@@ -24,13 +24,14 @@ public class FileIO {
         return file;
     }
 
+
     public void setFile(String file) {
         this.file = file;
     }
 
     public void saveFile(ArrayList<Task> taskList) throws IOException {
         FileWriter fw = new FileWriter(file);
-        String inputs = "My Task(s): \n";
+        String inputs = "";
         for (Task task: taskList) {
             inputs += task.getTaskType();
             inputs += SEGMENT_DIVIDER;
@@ -44,18 +45,20 @@ public class FileIO {
         fw.write(inputs);
         fw.close();
     }
-    public void loadFile(ArrayList<Task> taskList) throws FileNotFoundException {
+    public ArrayList<Task> loadFile() throws FileNotFoundException {
+        ArrayList<Task> taskList = new ArrayList<>();
         File f = new File(file);
         Scanner scanner = new Scanner(f);
+        String line;
+        String[] items;
         String taskType;
         String isDoneChecker;
         String taskDetails;
         String dateAndTime = "";
 
         while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            String[] items;
-            items = line.split("|");
+            line = scanner.nextLine();
+            items = line.split(" \\| ");
             taskType = items[0];
             isDoneChecker = items[1];
             taskDetails = items[2];
@@ -64,29 +67,28 @@ public class FileIO {
             }
             switch (taskType) {
             case "T":
-                ToDo todo = new ToDo("todo " + taskDetails);
+                ToDo todo = new ToDo(taskDetails);
                 if (isDoneChecker.equals("1")) {
                     todo.setDone(true);
                 }
                 taskList.add(todo);
                 break;
             case "D":
-                Deadline deadline = new Deadline("deadline " + taskDetails, dateAndTime);
+                Deadline deadline = new Deadline(taskDetails, dateAndTime);
                 if (isDoneChecker.equals("1")) {
                     deadline.setDone(true);
                 }
                 taskList.add(deadline);
                 break;
             case "E":
-                Event event = new Event("event " + taskDetails, dateAndTime);
+                Event event = new Event(taskDetails, dateAndTime);
                 if (isDoneChecker.equals("1")) {
                     event.setDone(true);
                 }
                 taskList.add(event);
                 break;
-            default:
-                break;
             }
         }
+        return taskList;
     }
 }
