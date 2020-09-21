@@ -6,10 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static duke.command.Parser.*;
-import static duke.command.Parser.isTypedDelete;
 import static duke.command.Ui.addHorizontalLine;
-import static duke.command.Ui.bye;
 
 public class TaskList {
 
@@ -20,21 +17,6 @@ public class TaskList {
 
     private static ArrayList<Task> taskList;
     private static Storage savedFile = new Storage("duke.txt");
-
-    public static void inputParser(String userRequest) {
-        if (isTypedList(userRequest)) {
-            printTaskList();
-        } else if (isTypedBye(userRequest)) {
-            saveTaskList();
-            bye();
-        } else if (isTypedDone(userRequest)) {
-            done(userRequest);
-        } else if (isTypedDelete(userRequest)) {
-            deleteTask(userRequest);
-        } else {
-            addTask(userRequest);
-        }
-    }
 
     public void loadTaskList() throws FileNotFoundException {
         try {
@@ -92,6 +74,21 @@ public class TaskList {
         } catch (IndexOutOfBoundsException e) {
             printExceptionMessage(ERROR_TASK_NOT_SET);
         }
+    }
+
+    public static void findKeyword(String userRequest) {
+        int startPointIndex = userRequest.indexOf(" ");
+        int searchListIndex = 1;
+        String keyword = userRequest.substring(startPointIndex + 1);
+        addHorizontalLine();
+        System.out.println("Here are the matching tasks in your list:");
+        for (Task currentTask: taskList) {
+            if(currentTask.getTaskName().contains(keyword)) {
+                System.out.println(searchListIndex + ". " + currentTask.toString());
+                searchListIndex++;
+            }
+        }
+        addHorizontalLine();
     }
 
     public static void addTask(String userRequest) {

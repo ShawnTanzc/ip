@@ -4,6 +4,7 @@ import duke.command.TaskList;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import static duke.command.Parser.*;
 import static duke.command.Ui.*;
 import static duke.command.TaskList.*;
 
@@ -21,7 +22,21 @@ public class Duke {
 
         while (true) {
             String userRequest = in.nextLine();
-            inputParser(userRequest);
+            if (isTypedList(userRequest)) {
+                printTaskList();
+            } else if (isTypedBye(userRequest)) {
+                saveTaskList();
+                bye();
+                break;
+            } else if (isTypedDone(userRequest)) {
+                done(userRequest);
+            } else if (isTypedDelete(userRequest)) {
+                deleteTask(userRequest);
+            } else if (isTypeFind(userRequest)) {
+                findKeyword(userRequest);
+            } else {
+                addTask(userRequest);
+            }
         }
     }
 

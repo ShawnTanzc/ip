@@ -19,4 +19,8 @@ public class Parser {
     public static boolean isTypedDelete(String userRequest) {
         return userRequest.startsWith("delete") && (userRequest.split(" ").length == 2);
     }
+
+    public static boolean isTypeFind(String userRequest) {
+        return userRequest.startsWith("find");
+    }
 }

@@ -12,6 +12,8 @@ import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import static duke.command.TaskList.printExceptionMessage;
+
 public class Storage {
     private final String SEGMENT_DIVIDER = " | ";
     private String file;
@@ -55,39 +57,43 @@ public class Storage {
         String isDoneChecker;
         String taskDetails;
         String dateAndTime = "";
-
-        while (scanner.hasNextLine()) {
-            line = scanner.nextLine();
-            items = line.split(" \\| ");
-            taskType = items[0];
-            isDoneChecker = items[1];
-            taskDetails = items[2];
-            if (items.length == 4) {
-                dateAndTime = items[3];
+        try {
+            while (scanner.hasNextLine()) {
+                line = scanner.nextLine();
+                items = line.split(" \\| ");
+                taskType = items[0];
+                isDoneChecker = items[1];
+                taskDetails = items[2];
+                if (items.length == 4) {
+                    dateAndTime = items[3];
+                }
+                switch (taskType) {
+                case "T":
+                    ToDo todo = new ToDo(taskDetails);
+                    if (isDoneChecker.equals("1")) {
+                        todo.setDone(true);
+                    }
+                    taskList.add(todo);
+                    break;
+                case "D":
+                    Deadline deadline = new Deadline(taskDetails, dateAndTime);
+                    if (isDoneChecker.equals("1")) {
+                        deadline.setDone(true);
+                    }
+                    taskList.add(deadline);
+                    break;
+                case "E":
+                    Event event = new Event(taskDetails, dateAndTime);
+                    if (isDoneChecker.equals("1")) {
+                        event.setDone(true);
+                    }
+                    taskList.add(event);
+                    break;
+                }
             }
-            switch (taskType) {
-            case "T":
-                ToDo todo = new ToDo(taskDetails);
-                if (isDoneChecker.equals("1")) {
-                    todo.setDone(true);
-                }
-                taskList.add(todo);
-                break;
-            case "D":
-                Deadline deadline = new Deadline(taskDetails, dateAndTime);
-                if (isDoneChecker.equals("1")) {
-                    deadline.setDone(true);
-                }
-                taskList.add(deadline);
-                break;
-            case "E":
-                Event event = new Event(taskDetails, dateAndTime);
-                if (isDoneChecker.equals("1")) {
-                    event.setDone(true);
-                }
-                taskList.add(event);
-                break;
-            }
+            return taskList;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            printExceptionMessage("Unable to read file. Check the text file again");
         }
         return taskList;
     }

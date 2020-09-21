@@ -1,3 +1,2 @@
-D | 0 | project | 2nd October
-D | 0 | critical reflection | tonight 2359
-E | 0 | team meeting | monday 9.30
+T | 1 | read book | 
+D | 0 | submit book | friday
