@@ -7,6 +7,9 @@ import duke.task.ToDo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileWriter;
@@ -15,6 +18,8 @@ import java.io.IOException;
 import static duke.command.TaskList.printExceptionMessage;
 
 public class Storage {
+
+    private static final String ERROR_DATE_TIME_FORMAT = "Incorrect date/time format provided. Use YYYY-MM-DD,HH:MM.";
     private final String SEGMENT_DIVIDER = " | ";
     private String file;
 
@@ -32,6 +37,7 @@ public class Storage {
     }
 
     public void saveFile(ArrayList<Task> taskList) throws IOException {
+
         FileWriter fw = new FileWriter(file);
         String inputs = "";
         for (Task task: taskList) {
@@ -56,7 +62,8 @@ public class Storage {
         String taskType;
         String isDoneChecker;
         String taskDetails;
-        String dateAndTime = "";
+        String deadlineDateAndTime = "";
+      
         try {
             while (scanner.hasNextLine()) {
                 line = scanner.nextLine();
@@ -65,7 +72,7 @@ public class Storage {
                 isDoneChecker = items[1];
                 taskDetails = items[2];
                 if (items.length == 4) {
-                    dateAndTime = items[3];
+                    deadlineDateAndTime = items[3];
                 }
                 switch (taskType) {
                 case "T":
@@ -76,14 +83,17 @@ public class Storage {
                     taskList.add(todo);
                     break;
                 case "D":
-                    Deadline deadline = new Deadline(taskDetails, dateAndTime);
+                    String[] dateAndTimeParts = deadlineDateAndTime.split(",");
+                    LocalDate deadlineDateFormat = LocalDate.parse(dateAndTimeParts[0]);
+                    LocalTime deadlineTimeFormat = LocalTime.parse(dateAndTimeParts[1]);
+                    Deadline deadline = new Deadline(taskDetails, deadlineDateFormat, deadlineTimeFormat);
                     if (isDoneChecker.equals("1")) {
                         deadline.setDone(true);
                     }
                     taskList.add(deadline);
                     break;
                 case "E":
-                    Event event = new Event(taskDetails, dateAndTime);
+                    Event event = new Event(taskDetails, deadlineDateAndTime);
                     if (isDoneChecker.equals("1")) {
                         event.setDone(true);
                     }
@@ -94,6 +104,8 @@ public class Storage {
             return taskList;
         } catch (ArrayIndexOutOfBoundsException e) {
             printExceptionMessage("Unable to read file. Check the text file again");
+        } catch (DateTimeException e) {
+            printExceptionMessage(ERROR_DATE_TIME_FORMAT);
         }
         return taskList;
     }

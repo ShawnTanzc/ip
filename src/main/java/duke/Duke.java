@@ -20,6 +20,7 @@ public class Duke {
         String anythingReply = in.nextLine();
         taskList.loadTaskList();
 
+
         while (true) {
             String userRequest = in.nextLine();
             if (isTypedList(userRequest)) {
