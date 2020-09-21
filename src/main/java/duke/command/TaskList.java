@@ -4,9 +4,15 @@ import duke.task.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
+import static duke.command.Parser.*;
+import static duke.command.Parser.isTypedDelete;
 import static duke.command.Ui.addHorizontalLine;
+import static duke.command.Ui.bye;
 
 public class TaskList {
 
@@ -14,6 +20,7 @@ public class TaskList {
     private static final String ERROR_INCORRECT_FORMAT = "Missing details. Please use the correct format.";
     private static final String ERROR_NO_SUCH_TASK = "Task not detected. Use \"todo\", \"deadline\" or \"event\".";
     private static final String ERROR_TASK_NOT_SET = "Task not created yet. Please create the task first.";
+    private static final String ERROR_DATE_TIME_FORMAT = "Incorrect date/time format provided. Use YYYY-MM-DD,HH:MM.";
 
     private static ArrayList<Task> taskList;
     private static Storage savedFile = new Storage("duke.txt");
@@ -28,7 +35,7 @@ public class TaskList {
         }
     }
 
-    public void printTaskList() {
+    public static void printTaskList() {
         if (taskList.size() == 0) {
             printExceptionMessage(ERROR_LIST_EMPTY);
         } else {
@@ -85,7 +92,10 @@ public class TaskList {
                 case DEADLINE:
                     String deadlineName = getTaskName(userRequest);
                     String deadlineDetail = getTaskDetail(userRequest);
-                    taskEntry = new Deadline(deadlineName, deadlineDetail);
+                    String[] detailParts = deadlineDetail.split(",");
+                    LocalDate deadlineDateFormat = LocalDate.parse(detailParts[0]);
+                    LocalTime deadlineTimeFormat = LocalTime.parse(detailParts[1]);
+                    taskEntry = new Deadline(deadlineName, deadlineDateFormat, deadlineTimeFormat);
                     break;
 
                 case EVENT:
@@ -111,6 +121,8 @@ public class TaskList {
             printExceptionMessage(ERROR_INCORRECT_FORMAT);
         } catch (DukeException e) {
             printExceptionMessage(ERROR_INCORRECT_FORMAT);
+        } catch (DateTimeException e) {
+            printExceptionMessage(ERROR_DATE_TIME_FORMAT);
         }
     }
     public static TaskType extractTaskType(String userRequest) throws DukeException {
@@ -148,7 +160,7 @@ public class TaskList {
         return userRequest.substring(startPointIndex);
     }
 
-    public void saveTaskList() {
+    public static void saveTaskList() {
         try {
             savedFile.saveFile(taskList);
             addHorizontalLine();

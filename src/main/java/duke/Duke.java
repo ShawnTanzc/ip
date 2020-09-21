@@ -1,17 +1,11 @@
 package duke;
 
-import duke.command.DukeException;
 import duke.command.TaskList;
-import duke.task.TaskType;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
-
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import static duke.command.Parser.*;
+import static duke.command.Parser.isTypedDelete;
 import static duke.command.Ui.*;
 import static duke.command.TaskList.*;
 
@@ -24,19 +18,20 @@ public class Duke {
         greet();
         String username = in.nextLine().trim();
         displayUsername(username);
-        String userReply = in.nextLine();
+        String anythingReply = in.nextLine();
         taskList.loadTaskList();
+
 
         while (true) {
             String userRequest = in.nextLine();
             if (isTypedList(userRequest)) {
-                taskList.printTaskList();
+                printTaskList();
             } else if (isTypedBye(userRequest)) {
-                taskList.saveTaskList();
+                saveTaskList();
                 bye();
-                return;
+                break;
             } else if (isTypedDone(userRequest)) {
-                taskList.done(userRequest);
+                done(userRequest);
             } else if (isTypedDelete(userRequest)) {
                 deleteTask(userRequest);
             } else {
@@ -44,4 +39,5 @@ public class Duke {
             }
         }
     }
+
 }

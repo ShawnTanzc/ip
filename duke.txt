@@ -1,3 +1,1 @@
-D | 0 | project | 2nd October
-E | 0 | team meeting | tmr 9pm
-D | 0 | critical reflection | tonight 2359
+D | 1 | project | 2020-09-21,04:12
