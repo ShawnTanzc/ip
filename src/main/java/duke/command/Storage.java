@@ -63,7 +63,7 @@ public class Storage {
         String isDoneChecker;
         String taskDetails;
         String deadlineDateAndTime = "";
-
+      
         try {
             while (scanner.hasNextLine()) {
                 line = scanner.nextLine();
@@ -102,6 +102,8 @@ public class Storage {
                 }
             }
             return taskList;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            printExceptionMessage("Unable to read file. Check the text file again");
         } catch (DateTimeException e) {
             printExceptionMessage(ERROR_DATE_TIME_FORMAT);
         }

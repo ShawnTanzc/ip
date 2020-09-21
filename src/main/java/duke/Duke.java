@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import static duke.command.Parser.*;
-import static duke.command.Parser.isTypedDelete;
 import static duke.command.Ui.*;
 import static duke.command.TaskList.*;
 
@@ -34,6 +33,8 @@ public class Duke {
                 done(userRequest);
             } else if (isTypedDelete(userRequest)) {
                 deleteTask(userRequest);
+            } else if (isTypeFind(userRequest)) {
+                findKeyword(userRequest);
             } else {
                 addTask(userRequest);
             }

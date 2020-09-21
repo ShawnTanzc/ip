@@ -9,10 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-import static duke.command.Parser.*;
-import static duke.command.Parser.isTypedDelete;
 import static duke.command.Ui.addHorizontalLine;
-import static duke.command.Ui.bye;
 
 public class TaskList {
 
@@ -81,6 +78,21 @@ public class TaskList {
         } catch (IndexOutOfBoundsException e) {
             printExceptionMessage(ERROR_TASK_NOT_SET);
         }
+    }
+
+    public static void findKeyword(String userRequest) {
+        int startPointIndex = userRequest.indexOf(" ");
+        int searchListIndex = 1;
+        String keyword = userRequest.substring(startPointIndex + 1);
+        addHorizontalLine();
+        System.out.println("Here are the matching tasks in your list:");
+        for (Task currentTask: taskList) {
+            if(currentTask.getTaskName().contains(keyword)) {
+                System.out.println(searchListIndex + ". " + currentTask.toString());
+                searchListIndex++;
+            }
+        }
+        addHorizontalLine();
     }
 
     public static void addTask(String userRequest) {
