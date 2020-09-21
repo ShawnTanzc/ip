@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileWriter;
@@ -18,7 +19,7 @@ import static duke.command.TaskList.printExceptionMessage;
 
 public class Storage {
 
-    private static final String ERROR_DATE_TIME_FORMAT = "Incorrect date format provided. Use YYYY-MM-DD for the date.";
+    private static final String ERROR_DATE_TIME_FORMAT = "Incorrect date/time format provided. Use YYYY-MM-DD,HH:MM.";
     private final String SEGMENT_DIVIDER = " | ";
     private String file;
 
@@ -61,7 +62,7 @@ public class Storage {
         String taskType;
         String isDoneChecker;
         String taskDetails;
-        String deadlineDate = "";
+        String deadlineDateAndTime = "";
 
         try {
             while (scanner.hasNextLine()) {
@@ -71,7 +72,7 @@ public class Storage {
                 isDoneChecker = items[1];
                 taskDetails = items[2];
                 if (items.length == 4) {
-                    deadlineDate = items[3];
+                    deadlineDateAndTime = items[3];
                 }
                 switch (taskType) {
                 case "T":
@@ -82,15 +83,17 @@ public class Storage {
                     taskList.add(todo);
                     break;
                 case "D":
-                    LocalDate deadlineDateFormat = LocalDate.parse(deadlineDate);
-                    Deadline deadline = new Deadline(taskDetails, deadlineDateFormat);
+                    String[] dateAndTimeParts = deadlineDateAndTime.split(",");
+                    LocalDate deadlineDateFormat = LocalDate.parse(dateAndTimeParts[0]);
+                    LocalTime deadlineTimeFormat = LocalTime.parse(dateAndTimeParts[1]);
+                    Deadline deadline = new Deadline(taskDetails, deadlineDateFormat, deadlineTimeFormat);
                     if (isDoneChecker.equals("1")) {
                         deadline.setDone(true);
                     }
                     taskList.add(deadline);
                     break;
                 case "E":
-                    Event event = new Event(taskDetails, deadlineDate);
+                    Event event = new Event(taskDetails, deadlineDateAndTime);
                     if (isDoneChecker.equals("1")) {
                         event.setDone(true);
                     }

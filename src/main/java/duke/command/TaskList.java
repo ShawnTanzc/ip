@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import static duke.command.Parser.*;
@@ -19,7 +20,7 @@ public class TaskList {
     private static final String ERROR_INCORRECT_FORMAT = "Missing details. Please use the correct format.";
     private static final String ERROR_NO_SUCH_TASK = "Task not detected. Use \"todo\", \"deadline\" or \"event\".";
     private static final String ERROR_TASK_NOT_SET = "Task not created yet. Please create the task first.";
-    private static final String ERROR_DATE_TIME_FORMAT = "Incorrect date format provided. Use YYYY-MM-DD for the date.";
+    private static final String ERROR_DATE_TIME_FORMAT = "Incorrect date/time format provided. Use YYYY-MM-DD,HH:MM.";
 
     private static ArrayList<Task> taskList;
     private static Storage savedFile = new Storage("duke.txt");
@@ -91,8 +92,10 @@ public class TaskList {
                 case DEADLINE:
                     String deadlineName = getTaskName(userRequest);
                     String deadlineDetail = getTaskDetail(userRequest);
-                    LocalDate deadlineDateFormat = LocalDate.parse(deadlineDetail);
-                    taskEntry = new Deadline(deadlineName, deadlineDateFormat);
+                    String[] detailParts = deadlineDetail.split(",");
+                    LocalDate deadlineDateFormat = LocalDate.parse(detailParts[0]);
+                    LocalTime deadlineTimeFormat = LocalTime.parse(detailParts[1]);
+                    taskEntry = new Deadline(deadlineName, deadlineDateFormat, deadlineTimeFormat);
                     break;
 
                 case EVENT:
