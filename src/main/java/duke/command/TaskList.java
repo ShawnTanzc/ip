@@ -22,16 +22,26 @@ public class TaskList {
     private static ArrayList<Task> taskList;
     private static Storage savedFile = new Storage("duke.txt");
 
+    /**
+     * Register the text file "duke.txt" and load the content into
+     * the arraylist taskList
+     *
+     * @throws FileNotFoundException if it is unable to detect the file
+     */
     public void loadTaskList() throws FileNotFoundException {
         try {
             System.out.println("Loading... Please Wait.");
             taskList = savedFile.loadFile();
             System.out.println(savedFile.getFile() + " has been loaded.");
         } catch (FileNotFoundException e) {
-            System.out.println("Error! " + savedFile.getFile() + "cannot be loaded.");
+            System.out.println("Error! " + savedFile.getFile() + "cannot be found.");
         }
     }
 
+    /**
+     * Print all the tasks in the latest task list with its completeness
+     * Inform user if task list is currently empty
+     */
     public static void printTaskList() {
         if (taskList.size() == 0) {
             printExceptionMessage(ERROR_LIST_EMPTY);
@@ -47,6 +57,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Extracts the index of the task user requested
+     * and checks the task as done
+     *
+      * @param userRequest the request typed in by the user
+     */
     public static void done(String userRequest) {
         try {
             String[] items = userRequest.split(" ");
@@ -61,6 +77,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Extracts the index of the task user requested
+     * and remove the task from the task list
+     *
+     * @param userRequest the request typed in by the user
+     */
     public static void deleteTask(String userRequest) {
         try {
             String[] items = userRequest.split(" ");
@@ -80,6 +102,13 @@ public class TaskList {
         }
     }
 
+    /**
+     * Extracts the keyword the user typed and run through the
+     * task list for the same keyword and display the list of
+     * matching task
+     *
+     * @param userRequest the request typed in by the user
+     */
     public static void findKeyword(String userRequest) {
         int startPointIndex = userRequest.indexOf(" ");
         int searchListIndex = 1;
@@ -95,6 +124,16 @@ public class TaskList {
         addHorizontalLine();
     }
 
+    /**
+     * Takes in the userRequest and sort it into various types of task
+     * Extracts individual details of the task and add it into the task list
+     * If userRequest does not match any of the categories, it informs user
+     * that there is no such task
+     * If userRequest matches one of the types but miss some required details,
+     * it informs user that format is incorrect
+     *
+     * @param userRequest the request typed in by the user
+     */
     public static void addTask(String userRequest) {
         try {
             TaskType newRequest = extractTaskType(userRequest);
@@ -137,6 +176,14 @@ public class TaskList {
             printExceptionMessage(ERROR_DATE_TIME_FORMAT);
         }
     }
+
+    /**
+     * Identifies and extracts the type of task namely: Deadline, Event or Todo
+     *
+     * @param userRequest the request typed in by the user
+     * @return the current task type to be sorted into various requirement
+     * @throws DukeException print error for which the format is incomplete or incorrect
+     */
     public static TaskType extractTaskType(String userRequest) throws DukeException {
         userRequest = userRequest.toLowerCase().trim();
         TaskType currentTaskType;
@@ -156,22 +203,44 @@ public class TaskList {
         return currentTaskType;
     }
 
+    /**
+     * Extracts the name of the task from userRequest
+     *
+     * @param userRequest the request typed in by the user
+     * @return String extracted name of task
+     */
     public static String getTaskName(String userRequest) {
         int startPointIndex = userRequest.indexOf(" ");
         int endPointIndex = userRequest.indexOf("/");
         return userRequest.substring(startPointIndex, endPointIndex);
     }
 
+    /**
+     * Extracts the details of the task from userRequest such as
+     * date and time
+     *
+     * @param userRequest the request typed in by the user
+     * @return String extracted details of task
+     */
     public static String getTaskDetail(String userRequest) {
         int startPointIndex = userRequest.lastIndexOf("/");
         return userRequest.substring(startPointIndex + 4);
     }
 
+    /**
+     * Extracts the name of the ToDo task from the user Request
+     *
+     * @param userRequest the request typed in by the user
+     * @return String extracted name of the ToDo task
+     */
     public static String getToDoName(String userRequest) {
         int startPointIndex = userRequest.indexOf(" ");
         return userRequest.substring(startPointIndex);
     }
 
+    /**
+     * Stores the content of the taskList into the text file specified
+     */
     public static void saveTaskList() {
         try {
             savedFile.saveFile(taskList);
@@ -182,11 +251,21 @@ public class TaskList {
         }
     }
 
+    /**
+     * Tracks the number of task currently in the taskList
+     *
+     * @param taskList the list that store tasks
+     */
     public static void numberOfTaskTracker(ArrayList<Task> taskList) {
         int numberOfTasks = taskList.size();
         System.out.println("Now you have " + numberOfTasks + " task(s) in the list.");
     }
 
+    /**
+     * Prints any exception message provided
+     *
+     * @param exceptionMessage message for user if any issues encountered
+     */
     public static void printExceptionMessage(String exceptionMessage) {
         addHorizontalLine();
         System.out.println(exceptionMessage);

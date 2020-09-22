@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Handles deadline-related tasks and sort them into a more readable format
+ */
 public class Deadline extends Task {
     private LocalDate byDate;
     private LocalTime byTime;
@@ -21,6 +24,11 @@ public class Deadline extends Task {
         return byTime;
     }
 
+    /**
+     * Return a fixed format when user inputs a deadline task
+     *
+     * @return deadline task for printing
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + getByDate().format(DateTimeFormatter.ofPattern("MMM d yyyy"))

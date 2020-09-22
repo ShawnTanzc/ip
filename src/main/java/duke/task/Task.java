@@ -1,5 +1,10 @@
 package duke.task;
 
+/**
+ * Represents a general superclass over deadline, event and todo
+ * Sets and gets several information that are common between the 3
+ * types of task
+ */
 public abstract class Task {
     private String taskName;
     private boolean isDone;

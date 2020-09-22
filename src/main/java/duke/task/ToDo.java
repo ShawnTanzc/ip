@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * Handles todo-related task and sort them into a more readable format
+ */
 public class ToDo extends Task {
     public ToDo(String taskName) {
         super(taskName);
