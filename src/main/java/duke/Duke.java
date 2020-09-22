@@ -8,8 +8,11 @@ import static duke.command.Parser.*;
 import static duke.command.Ui.*;
 import static duke.command.TaskList.*;
 
+/**
+ * Represents the main program which takes in various task entry and
+ * multiple task tracking commands by the user
+ */
 public class Duke {
-
 
     public static void main(String[] args) throws FileNotFoundException {
         Scanner in = new Scanner(System.in);

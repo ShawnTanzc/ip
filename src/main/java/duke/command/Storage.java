@@ -17,9 +17,14 @@ import java.io.IOException;
 
 import static duke.command.TaskList.printExceptionMessage;
 
+/**
+ * Deals with loading tasks from the file and saving task
+ * in the file
+ */
 public class Storage {
 
     private static final String ERROR_DATE_TIME_FORMAT = "Incorrect date/time format provided. Use YYYY-MM-DD,HH:MM.";
+    private static final String ERROR_READING_FILE = "Unable to read file. Check the text file again";
     private final String SEGMENT_DIVIDER = " | ";
     private String file;
 
@@ -31,11 +36,17 @@ public class Storage {
         return file;
     }
 
-
     public void setFile(String file) {
         this.file = file;
     }
 
+    /**
+     * Writes file in a specific format with individual segments
+     * of the task in the taskList
+     *
+     * @param taskList the list that stores the current tasks
+     * @throws IOException exception with inputs and outputs with writing
+     */
     public void saveFile(ArrayList<Task> taskList) throws IOException {
 
         FileWriter fw = new FileWriter(file);
@@ -53,6 +64,14 @@ public class Storage {
         fw.write(inputs);
         fw.close();
     }
+
+    /**
+     * Loads the text file and extracts relevant information
+     * to recover the previously saved task list
+     *
+     * @return taskList the list that stores the current tasks
+     * @throws FileNotFoundException if file cant be read
+     */
     public ArrayList<Task> loadFile() throws FileNotFoundException {
         ArrayList<Task> taskList = new ArrayList<>();
         File f = new File(file);
@@ -103,7 +122,7 @@ public class Storage {
             }
             return taskList;
         } catch (ArrayIndexOutOfBoundsException e) {
-            printExceptionMessage("Unable to read file. Check the text file again");
+            printExceptionMessage(ERROR_READING_FILE);
         } catch (DateTimeException e) {
             printExceptionMessage(ERROR_DATE_TIME_FORMAT);
         }
