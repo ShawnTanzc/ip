@@ -247,7 +247,7 @@ public class TaskList {
             addHorizontalLine();
             System.out.println("Task have been saved. File name: " + savedFile.getFile());
         } catch (IOException e) {
-            printExceptionMessage("Unable to save file");
+            printExceptionMessage("Unable to save file.");
         }
     }
 
