@@ -34,7 +34,9 @@ your task with Duke.
     * `find books`: Search through the task list for the keyword books.
     * `exit`: Save and exit Duke application.
 1. Refer to the Features below for details of each commands
+
 ## Features 
+
 Duke provides 3 categories of tasks to select from. They are `Deadline`, `Event` and `ToDo`. 
 Other functions include `list`, `done`, `delete`, `find` and `exit`.
 
@@ -79,6 +81,7 @@ If unsuccessful:
 Loading... Please Wait.
 Error! duke.txt cannot be found. 
 ```
+
 ### Adding deadline task
 
 Adds a deadline type task to the task list
@@ -98,6 +101,7 @@ Got it. I've added this task: [D][✘] CS2113T Project Submission (by: Oct 2 202
 Now you have 1 task(s) in the list.
 _________________________________________
 ```
+
 ### Adding event task
 
 Adds an event type task to the task list
@@ -116,6 +120,7 @@ Got it. I've added this task: [E][✘] Engin Day (at: this Monday 12pm - 4pm)
 Now you have 2 task(s) in the list.
 _________________________________________
 ```
+
 ### Adding todo task
 
 Adds a todo type task to the task list
@@ -151,6 +156,7 @@ _________________________________________
  Missing details. Please use the correct format.
  _________________________________________
 ```
+
 ### Displaying task list
 
 Displays the current tasks in the task list
@@ -172,6 +178,7 @@ if the list doesn't have any task:
 ```
 List is currently empty. Please insert task.
 ``` 
+
 ### Checking task as complete
 
 Sets the task on the specific index as done
@@ -204,6 +211,7 @@ _________________________________________
 Task not created yet. Please create the task first.
 _________________________________________
 ```
+
 ### Deleting task from list
 
 Deletes the task on the specific index in the list
@@ -236,6 +244,7 @@ _________________________________________
 Task not created yet. Please create the task first.
 _________________________________________
 ```
+
 ### Finding keyword in list
 
 Finds any keyword the user inputs and extract the matching tasks.
@@ -262,6 +271,7 @@ _________________________________________
 ```
 > Things to note:
 > * `KEYWORD` input by user is case-sensitive.
+
 ### Exiting the program
 
 Displays an exit message.
@@ -288,6 +298,7 @@ _________________________________________
 Bye. Hope to see you again soon!
 _________________________________________
 ```
+
 ## Command Summary
 
 | Action | Format, Example |
