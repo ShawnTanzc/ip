@@ -135,7 +135,6 @@ _________________________________________
 >1. If Duke detects the keyword, but incorrect 
 >format provided, it will prompt user to follow the correct format.
 
-Examples:
 * `toodo`
 ```
 _________________________________________
@@ -164,6 +163,7 @@ Here are the tasks in your list:
 _________________________________________
 ```
 if the list doesn't have any task:
+* `list`
 ```
 List is currently empty. Please insert task.
 ``` 
@@ -223,7 +223,7 @@ Here are the tasks in your list:
 _________________________________________
 ```
 If task do not exist: 
-`delete 3`
+* `delete 3`
 ```
 _________________________________________
 Task not created yet. Please create the task first.
@@ -252,8 +252,8 @@ _________________________________________
 Here are the matching tasks in your list:
 _________________________________________
 ```
-Things to note:
-* `KEYWORD` input by user is case-sensitive.
+> Things to note:
+> * `KEYWORD` input by user is case-sensitive.
 ###Exiting the program
 Displays an exit message.
 Saves a copy of the task list in `duke.txt` in your computer
@@ -262,7 +262,7 @@ before exiting the program.
 Format: `bye`
 
 Example:
-*`bye`
+* `bye`
 ```
 _________________________________________
 Task have been saved. File name: duke.txt
@@ -271,7 +271,7 @@ Bye. Hope to see you again soon!
 _________________________________________
 ```
 if program is unable to be saved:
-*`bye`
+* `bye`
 ```
 _________________________________________
 Unable to save file.
