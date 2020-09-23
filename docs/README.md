@@ -44,6 +44,7 @@ Other functions include `list`, `done`, `delete`, `find` and `exit`.
 >1. Format should be followed strictly as per user guide.
 
 ### Starting the program
+
 Displays an introductory message and request for user's name
 
 ```
@@ -78,7 +79,8 @@ If unsuccessful:
 Loading... Please Wait.
 Error! duke.txt cannot be found. 
 ```
-###Adding deadline task
+### Adding deadline task
+
 Adds a deadline type task to the task list
 
 Format: `deadline TASK_NAME /by YYYY-MM-DD,HH:MM`
@@ -96,7 +98,8 @@ Got it. I've added this task: [D][✘] CS2113T Project Submission (by: Oct 2 202
 Now you have 1 task(s) in the list.
 _________________________________________
 ```
-###Adding event task
+### Adding event task
+
 Adds an event type task to the task list
 
 Format: `event TASK_NAME /at TASK_DATE_TIME`
@@ -113,7 +116,8 @@ Got it. I've added this task: [E][✘] Engin Day (at: this Monday 12pm - 4pm)
 Now you have 2 task(s) in the list.
 _________________________________________
 ```
-###Adding todo task
+### Adding todo task
+
 Adds a todo type task to the task list
 
 Format: `todo TASK_NAME`
@@ -147,7 +151,8 @@ _________________________________________
  Missing details. Please use the correct format.
  _________________________________________
 ```
-###Displaying task list
+### Displaying task list
+
 Displays the current tasks in the task list
 
 Format: `list`
@@ -167,7 +172,8 @@ if the list doesn't have any task:
 ```
 List is currently empty. Please insert task.
 ``` 
-###Checking task as complete
+### Checking task as complete
+
 Sets the task on the specific index as done
 
 Format: `done TASK_LIST_INDEX`
@@ -198,7 +204,8 @@ _________________________________________
 Task not created yet. Please create the task first.
 _________________________________________
 ```
-###Deleting task from list
+### Deleting task from list
+
 Deletes the task on the specific index in the list
 
 Format: `delete TASK_LIST_INDEX`
@@ -229,7 +236,8 @@ _________________________________________
 Task not created yet. Please create the task first.
 _________________________________________
 ```
-###Finding keyword in list
+### Finding keyword in list
+
 Finds any keyword the user inputs and extract the matching tasks.
 
 Format: `find KEYWORD`
@@ -254,7 +262,8 @@ _________________________________________
 ```
 > Things to note:
 > * `KEYWORD` input by user is case-sensitive.
-###Exiting the program
+### Exiting the program
+
 Displays an exit message.
 Saves a copy of the task list in `duke.txt` in your computer
 before exiting the program.
@@ -279,7 +288,8 @@ _________________________________________
 Bye. Hope to see you again soon!
 _________________________________________
 ```
-##Command Summary
+## Command Summary
+
 Action | Format, Example
 ----------|----------
 Deadline | `deadline TASK_NAME /by YYYY-MM-DD,HH:MM`, `deadline CS2113T Project Submission /by 2020-10-02,23:59`
