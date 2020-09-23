@@ -4,18 +4,18 @@ While it is carefully build to cater the needs of student, but sure to have a sm
 your task with Duke.
 
 ## Table of Contents
-* [Quick Start](## Quick-Start)
-* [Features](## Features)
-    * [Starting the program](###Starting-the-program)
-    * [Adding deadline task](###Adding-deadline-task): `deadline`
-    * [Adding event task](###Adding-event-task): `event`
-    * [Adding todo task](###Adding-todo-task): `todo`
-    * [Displaying task list](###Displaying-task-list): `list`
-    * [Checking task as complete](###Checking-task-as-complete): `done`
-    * [Deleting task from list](###Deleting-task-from-list): `delete`
-    * [Finding keyword in list](###Finding-keyword-in-list): `find`
-    * [Exiting the program](###Exiting-the-program): `bye`
-* [Command Summary](##Command-Summary)
+* [Quick Start](#quick-start)
+* [Features](#features)
+    * [Starting the program](#starting-the-program)
+    * [Adding deadline task](#adding-deadline-task): `deadline`
+    * [Adding event task](#adding-event-task): `event`
+    * [Adding todo task](#adding-todo-task): `todo`
+    * [Displaying task list](#displaying-task-list): `list`
+    * [Checking task as complete](#checking-task-as-complete): `done`
+    * [Deleting task from list](#deleting-task-from-list): `delete`
+    * [Finding keyword in list](#finding-keyword-in-list): `find`
+    * [Exiting the program](#exiting-the-program): `bye`
+* [Command Summary](#command-summary)
 
 ## Quick Start
 
