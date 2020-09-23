@@ -4,18 +4,18 @@ While it is carefully build to cater the needs of student, but sure to have a sm
 your task with Duke.
 
 ## Table of Contents
-* [Quick Start](##Quick Start)
-* [Features](##Features)
-    * [Starting the program](###Starting the program)
-    * [Adding deadline task](###Adding deadline task): `deadline`
-    * [Adding event task](###Adding event task): `event`
-    * [Adding todo task](###Adding todo task): `todo`
-    * [Displaying task list](###Displaying task list): `list`
-    * [Checking task as complete](###Checking task as complete): `done`
-    * [Deleting task from list](###Deleting task from list): `delete`
-    * [Finding keyword in list](###Finding keyword in list): `find`
-    * [Exiting the program](###Exiting the program): `bye`
-* [Command Summary](##Command Summary)
+* [Quick Start](## Quick-Start)
+* [Features](## Features)
+    * [Starting the program](###Starting-the-program)
+    * [Adding deadline task](###Adding-deadline-task): `deadline`
+    * [Adding event task](###Adding-event-task): `event`
+    * [Adding todo task](###Adding-todo-task): `todo`
+    * [Displaying task list](###Displaying-task-list): `list`
+    * [Checking task as complete](###Checking-task-as-complete): `done`
+    * [Deleting task from list](###Deleting-task-from-list): `delete`
+    * [Finding keyword in list](###Finding-keyword-in-list): `find`
+    * [Exiting the program](###Exiting-the-program): `bye`
+* [Command Summary](##Command-Summary)
 
 ## Quick Start
 
@@ -290,14 +290,14 @@ _________________________________________
 ```
 ## Command Summary
 
-Action | Format, Example
-----------|----------
-Deadline | `deadline TASK_NAME /by YYYY-MM-DD,HH:MM`, `deadline CS2113T Project Submission /by 2020-10-02,23:59`
-Event | `event TASK_NAME /at TASK_DATE_TIME`, `event Engin Day /at this Monday 12pm - 4pm`
-ToDo | `todo TASK_NAME`, `todo CS2101 assignment`
-List | `list`, `list`
-Done | `done TASK_LIST_INDEX`, `done 2`
-Delete | `delete TASK_LIST_INDEX`, `delete 2`
-Find | `find KEYWORD`, `find CS2101`
+| Action | Format, Example |
+| :-:    |:--              |
+|Deadline| `deadline TASK_NAME /by YYYY-MM-DD,HH:MM`, `deadline CS2113T Project Submission /by 2020-10-02,23:59` |
+|Event   | `event TASK_NAME /at TASK_DATE_TIME`, `event Engin Day /at this Monday 12pm - 4pm` |
+|ToDo    | `todo TASK_NAME`, `todo CS2101 assignment` |
+|List    | `list`, `list` |
+|Done    | `done TASK_LIST_INDEX`, `done 2` |
+|Delete  | `delete TASK_LIST_INDEX`, `delete 2` |
+|Find    | `find KEYWORD`, `find CS2101` |
 
 ### ---- END OF USER GUIDE ----
