@@ -1,6 +1,10 @@
 package duke.command;
 
-import duke.task.*;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskType;
+import duke.task.ToDo;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -140,23 +144,13 @@ public class TaskList {
             if (newRequest != null) {
                 switch (newRequest) {
                 case DEADLINE:
-                    String deadlineName = getTaskName(userRequest);
-                    String deadlineDetail = getTaskDetail(userRequest);
-                    String[] detailParts = deadlineDetail.split(",");
-                    LocalDate deadlineDateFormat = LocalDate.parse(detailParts[0]);
-                    LocalTime deadlineTimeFormat = LocalTime.parse(detailParts[1]);
-                    taskEntry = new Deadline(deadlineName, deadlineDateFormat, deadlineTimeFormat);
+                    taskEntry = getDeadlineEntry(userRequest);
                     break;
-
                 case EVENT:
-                    String eventName = getTaskName(userRequest);
-                    String eventDetail = getTaskDetail(userRequest);
-                    taskEntry = new Event(eventName, eventDetail);
+                    taskEntry = getEventEntry(userRequest);
                     break;
-
                 case TODO:
-                    String toDoName = getToDoName(userRequest);
-                    taskEntry = new ToDo(toDoName);
+                    taskEntry = getToDoEntry(userRequest);
                     break;
                 }
                 addHorizontalLine();
@@ -172,6 +166,50 @@ public class TaskList {
         } catch (DateTimeException e) {
             printExceptionMessage(ERROR_DATE_TIME_FORMAT);
         }
+    }
+
+    /**
+     * Form up individual segments of the todo task and present
+     * it in a task entry to be printed with the right format
+     * @param userRequest the request typed in by the user
+     * @return task entry to be printed with the right format
+     */
+    public static Task getToDoEntry(String userRequest) {
+        Task taskEntry;
+        String toDoName = getToDoName(userRequest);
+        taskEntry = new ToDo(toDoName);
+        return taskEntry;
+    }
+
+    /**
+     * Form up individual segments of the event task and present
+     * it in a task entry to be printed with the right format
+     * @param userRequest the request typed in by the user
+     * @return task entry to be printed with the right format
+     */
+    public static Task getEventEntry(String userRequest) {
+        Task taskEntry;
+        String eventName = getTaskName(userRequest);
+        String eventDetail = getTaskDetail(userRequest);
+        taskEntry = new Event(eventName, eventDetail);
+        return taskEntry;
+    }
+
+    /**
+     * Form up individual segments of the deadline task and present
+     * it in a task entry to be printed with the right format
+     * @param userRequest the request typed in by the user
+     * @return task entry to be printed with the right format
+     */
+    public static Task getDeadlineEntry(String userRequest) {
+        Task taskEntry;
+        String deadlineName = getTaskName(userRequest);
+        String deadlineDetail = getTaskDetail(userRequest);
+        String[] detailParts = deadlineDetail.split(",");
+        LocalDate deadlineDateFormat = LocalDate.parse(detailParts[0]);
+        LocalTime deadlineTimeFormat = LocalTime.parse(detailParts[1]);
+        taskEntry = new Deadline(deadlineName, deadlineDateFormat, deadlineTimeFormat);
+        return taskEntry;
     }
 
     /**

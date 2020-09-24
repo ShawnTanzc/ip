@@ -25,7 +25,13 @@ public class Storage {
 
     private static final String ERROR_DATE_TIME_FORMAT = "Incorrect date/time format provided. Use YYYY-MM-DD,HH:MM.";
     private static final String ERROR_READING_FILE = "Unable to read file. Check the text file again";
+    private static final int TASK_TYPE_INDEX = 0;
+    private static final int DONE_CHECKER_INDEX = 1;
+    private static final int TASK_DETAILS_INDEX = 2;
+    private static final int DATE_TIME_INDEX = 3;
+    private static final String DONE = "1";
     private final String SEGMENT_DIVIDER = " | ";
+
     private String file;
 
     public Storage(String file) {
@@ -76,46 +82,31 @@ public class Storage {
         ArrayList<Task> taskList = new ArrayList<>();
         File f = new File(file);
         Scanner scanner = new Scanner(f);
-        String line;
-        String[] items;
-        String taskType;
-        String isDoneChecker;
-        String taskDetails;
-        String deadlineDateAndTime = "";
-      
+        String dateAndTimeDetails = "";
         try {
             while (scanner.hasNextLine()) {
-                line = scanner.nextLine();
-                items = line.split(" \\| ");
-                taskType = items[0];
-                isDoneChecker = items[1];
-                taskDetails = items[2];
+                String line = scanner.nextLine();
+                String [] items = line.split(" \\| ");
+                String taskType = items[TASK_TYPE_INDEX];
+                String DoneChecker = items[DONE_CHECKER_INDEX];
+                String taskDetails = items[TASK_DETAILS_INDEX];
                 if (items.length == 4) {
-                    deadlineDateAndTime = items[3];
+                    dateAndTimeDetails = items[DATE_TIME_INDEX];
                 }
                 switch (taskType) {
                 case "T":
                     ToDo todo = new ToDo(taskDetails);
-                    if (isDoneChecker.equals("1")) {
-                        todo.setDone(true);
-                    }
+                    setToDoIfDone(DoneChecker, todo);
                     taskList.add(todo);
                     break;
                 case "D":
-                    String[] dateAndTimeParts = deadlineDateAndTime.split(",");
-                    LocalDate deadlineDateFormat = LocalDate.parse(dateAndTimeParts[0]);
-                    LocalTime deadlineTimeFormat = LocalTime.parse(dateAndTimeParts[1]);
-                    Deadline deadline = new Deadline(taskDetails, deadlineDateFormat, deadlineTimeFormat);
-                    if (isDoneChecker.equals("1")) {
-                        deadline.setDone(true);
-                    }
+                    Deadline deadline = getDeadlineFormat(dateAndTimeDetails, taskDetails);
+                    checkDeadlineIfDone(DoneChecker, deadline);
                     taskList.add(deadline);
                     break;
                 case "E":
-                    Event event = new Event(taskDetails, deadlineDateAndTime);
-                    if (isDoneChecker.equals("1")) {
-                        event.setDone(true);
-                    }
+                    Event event = new Event(taskDetails, dateAndTimeDetails);
+                    checkEventIfDone(DoneChecker, event);
                     taskList.add(event);
                     break;
                 }
@@ -127,5 +118,62 @@ public class Storage {
             printExceptionMessage(ERROR_DATE_TIME_FORMAT);
         }
         return taskList;
+    }
+
+    /**
+     * Arrange the different segments into proper deadline format
+     * @param dateAndTimeDetails input date and time details
+     * @param taskDetails input name of task
+     * @return Deadline in the format to be printed
+     */
+    public Deadline getDeadlineFormat(String dateAndTimeDetails, String taskDetails) {
+        String[] dateAndTimeParts = dateAndTimeDetails.split(",");
+        LocalDate deadlineDateFormat = LocalDate.parse(dateAndTimeParts[0]);
+        LocalTime deadlineTimeFormat = LocalTime.parse(dateAndTimeParts[1]);
+        Deadline deadline = new Deadline(taskDetails, deadlineDateFormat, deadlineTimeFormat);
+        return deadline;
+    }
+
+    /**
+     * Check and set ToDo Task as Done
+     * @param doneChecker input to be check if done
+     * @param todo ToDo task to be set
+     */
+    public void setToDoIfDone(String doneChecker, ToDo todo) {
+        if (isDoneForCheck(doneChecker)) {
+            todo.setDone(true);
+        }
+    }
+
+    /**
+     * Check and set Event Task as Done
+     * @param doneChecker input to be check if done
+     * @param event Event task to be set
+     */
+    public void checkEventIfDone(String doneChecker, Event event) {
+        if (isDoneForCheck(doneChecker)) {
+            event.setDone(true);
+        }
+    }
+
+    /**
+     * Check and set Deadline Task as Done
+     * @param doneChecker input to be check if done
+     * @param deadline Deadline task to be set
+     */
+    public void checkDeadlineIfDone(String doneChecker, Deadline deadline) {
+        if (isDoneForCheck(doneChecker)) {
+            deadline.setDone(true);
+        }
+    }
+
+    /**
+     * Returns true if task is checked to be done
+     *
+     * @param doneChecker String that value of completion
+     * @return boolean true or false
+     */
+    public boolean isDoneForCheck(String doneChecker) {
+        return doneChecker.equals(DONE);
     }
 }
