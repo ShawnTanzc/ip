@@ -95,7 +95,7 @@ public class TaskList {
                 System.out.println("Noted. I've removed this task:");
                 System.out.println(taskList.get(index).toString());
                 taskList.remove(index);
-                numberOfTaskTracker(taskList);
+                trackNumberOfTasks(taskList);
                 addHorizontalLine();
             } else {
                 printExceptionMessage(ERROR_TASK_NOT_SET);
@@ -156,7 +156,7 @@ public class TaskList {
                 addHorizontalLine();
                 System.out.println("Got it. I've added this task: " + taskEntry.toString());
                 taskList.add(taskEntry);
-                numberOfTaskTracker(taskList);
+                trackNumberOfTasks(taskList);
                 addHorizontalLine();
             } else {
                 printExceptionMessage(ERROR_NO_SUCH_TASK);
@@ -291,7 +291,7 @@ public class TaskList {
      *
      * @param taskList the list that store tasks
      */
-    public static void numberOfTaskTracker(ArrayList<Task> taskList) {
+    public static void trackNumberOfTasks(ArrayList<Task> taskList) {
         int numberOfTasks = taskList.size();
         System.out.println("Now you have " + numberOfTasks + " task(s) in the list.");
     }

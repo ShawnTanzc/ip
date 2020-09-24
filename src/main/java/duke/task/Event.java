@@ -12,7 +12,7 @@ public class Event extends Task {
     }
 
     /**
-     * Return a fixed format when user inputs a event task
+     * Returns a fixed format when user inputs a event task
      *
      * @return event task for printing
      */

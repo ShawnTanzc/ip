@@ -25,7 +25,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Return a fixed format when user inputs a deadline task
+     * Returns a fixed format when user inputs a deadline task
      *
      * @return deadline task for printing
      */

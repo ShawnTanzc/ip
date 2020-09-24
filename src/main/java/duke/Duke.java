@@ -33,8 +33,6 @@ public class Duke {
         displayUsername(username);
         String anythingReply = in.nextLine();
         taskList.loadTaskList();
-
-
         while (true) {
             String userRequest = in.nextLine();
             if (isTypedList(userRequest)) {
@@ -54,5 +52,4 @@ public class Duke {
             }
         }
     }
-
 }
