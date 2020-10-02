@@ -29,7 +29,6 @@ public class TaskList {
     /**
      * Register the text file "duke.txt" and load the content into
      * the arraylist taskList
-     *
      */
     public void loadTaskList() {
         try {
