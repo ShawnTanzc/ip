@@ -27,7 +27,7 @@ public class Ui {
      * @param username the name input by user
      */
     public static void displayUsername(String username) {
-        System.out.println("Hello " + username + "! Press any key to continue.");
+        System.out.println("Hello " + username + "!");
         addHorizontalLine();
     }
 

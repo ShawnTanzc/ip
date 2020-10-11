@@ -15,9 +15,7 @@ import static duke.command.TaskList.done;
 import static duke.command.TaskList.findKeyword;
 import static duke.command.TaskList.printTaskList;
 import static duke.command.TaskList.saveTaskList;
-import static duke.command.Ui.bye;
-import static duke.command.Ui.displayUsername;
-import static duke.command.Ui.greet;
+import static duke.command.Ui.*;
 
 /**
  * Represents the main program which takes in various task entry and
@@ -31,8 +29,12 @@ public class Duke {
         greet();
         String username = in.nextLine().trim();
         displayUsername(username);
-        String anythingReply = in.nextLine();
-        taskList.loadTaskList();
+        try {
+            taskList.loadTaskList();
+        } catch (FileNotFoundException e){
+            System.out.println("duke.txt file is not found.");
+            addHorizontalLine();
+        }
         while (true) {
             String userRequest = in.nextLine();
             if (isTypedList(userRequest)) {

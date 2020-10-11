@@ -24,19 +24,25 @@ public class TaskList {
     private static final String ERROR_DATE_TIME_FORMAT = "Incorrect date/time format provided. Use YYYY-MM-DD,HH:MM.";
 
     private static ArrayList<Task> taskList;
-    private static final Storage savedFile = new Storage("duke.txt");
+    private static Storage savedFile;
+
+    public TaskList () {
+        taskList = new ArrayList<>();
+        savedFile = new Storage("duke.txt");
+    }
 
     /**
      * Register the text file "duke.txt" and load the content into
      * the arraylist taskList
      */
-    public void loadTaskList() {
+    public void loadTaskList() throws FileNotFoundException {
         try {
             System.out.println("Loading... Please Wait.");
             taskList = savedFile.loadFile();
             System.out.println(savedFile.getFile() + " has been loaded.");
+            addHorizontalLine();
         } catch (FileNotFoundException e) {
-            System.out.println("Error! " + savedFile.getFile() + " cannot be found.");
+            throw new FileNotFoundException();
         }
     }
 
